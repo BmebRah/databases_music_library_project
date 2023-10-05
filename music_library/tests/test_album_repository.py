@@ -21,3 +21,11 @@ def test_it_returns_all_records_from_album(db_connection):
         Album(11, 'Fodder on My Wings', 1982, 4),
         Album(12, 'Ring Ring', 1973, 2),
     ]
+
+def test_it_returns_single_record_using_find_method(db_connection):
+    db_connection.seed("/Users/bereket/database_model_and_repository/seeds/music_library.sql")
+    repository = AlbumRepository(db_connection)
+
+    album = repository.find(3)
+
+    assert album == Album(3, 'Waterloo', 1974, 2)
